@@ -2,7 +2,7 @@
 
 Official distribution repository for Famynex Linux appliance release packages.
 
-No installable release is available yet. Packages will appear under [Releases](https://github.com/burhanakalin/famynex-releases/releases) after validation and signing.
+[Famynex 0.1.0](https://github.com/burhanakalin/famynex-releases/releases/tag/v0.1.0) is available as a signed Linux x64 **pre-release for supervised device validation**. Hardware acceptance and first-device installation remain pending; it is not a completed appliance installation.
 
 The device updater verifies the release signature, supported platform/schema, archive size and SHA-256 before installation. A checksum alone does not establish release authenticity. Trust keys must be provisioned independently of downloaded packages.
 
