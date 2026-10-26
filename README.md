@@ -94,3 +94,25 @@ Four focused file/worker preparation cases and 24 existing appliance checks pass
 Mac Node22.23.2. Actual Toshiba preparation and GUI enrollment remain pending; the
 runtime-build suite was unavailable locally because esbuild is absent. No signed
 application assets were changed and no GitHub Actions run was requested.
+
+
+### Supervised kiosk login configuration (no immediate logout)
+
+Actual Toshiba kiosk preparation is confirmed, with release/Core reverified and
+profile preserved. `tools/configure-kiosk-login-0.1.1.mjs` is the next separate
+operator tool. SHA256 `1aac54a484a107a2b647fbbbd36c5b51e66f82858ec09b9afa07eb61c8b08b69`.
+Source `burhanakalin/famynex` commit `eaeaf8517db8dcea3648f5e8fcc9e7ab796d4adf`.
+It verifies the fixed installed identity, kiosk files/receipt/private profile and
+live Core health, then requires the observed merged burhan/timeout0/xfce LightDM
+policy. It saves exact old bytes privately at
+`/var/lib/famynex-updater/lightdm-before-kiosk.conf`, keeps unrelated settings and
+atomically changes autologin to famynex/xfce after concurrent-edit checks.
+It verifies the effective configuration before success and keeps a lock on failure.
+
+This tool changes future login configuration; it does not restart LightDM, close
+the current desktop, change passwords/PAM, reboot, invoke a bootstrap launcher or
+enroll the display. Keep the current session and do not reboot until physical GUI
+enrollment handoff is ready. On any failure, do not reboot or remove operation locks.
+Four file/parser/concurrency tests pass on MacNode22.23.2 with service/LightDM doubles;
+actual Toshiba configuration and GUI acceptance remain pending. Signed runtime
+assets are unchanged; there is no new GitHub Actions execution.
