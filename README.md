@@ -24,3 +24,23 @@ environment or setup policy. It refuses existing installation roots; partial
 preparation locks require explicit review. Initial service installation, trusted
 session enrollment and actual hardware acceptance remain pending. Published
 release archives and signed manifests are unchanged.
+
+## Supervised initial Core/calendar installation
+
+After successful root preparation, `tools/install-core-0.1.1.mjs` is a separate,
+checksum-verified operator tool. SHA-256:
+`1978387af2ac7487fc0302466eea3a94f4e7851e81ca8a4f41ebdfa06dc1be8a`.
+
+It privately binds the configured household and exact existing migration names,
+requires a fresh decoded and rechecked database backup, then creates the dedicated
+non-root account and fixed Core/calendar services. Installed state and boot
+enablement follow actual process identity and database-ready health checks.
+It preserves the existing Core environment, policy and keys, never migrates or
+restores a database, and refuses unmanaged or already installed resources.
+Failure locks and private attempt/backup records require explicit local review.
+
+The new tool has focused filesystem/subprocess/worker-handoff tests; actual device
+systemd/PostgreSQL16 service execution still needs operator confirmation. It does
+not install the updater, enroll a browser, change login/idle/lid settings or mark
+hardware acceptance complete. The release remains a supervised pre-release;
+published signed package assets are unchanged.
