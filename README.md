@@ -27,6 +27,9 @@ release archives and signed manifests are unchanged.
 
 ## Supervised initial Core/calendar installation
 
+**Known supervised-device issue:** the first Core installer incorrectly expects the calendar worker to remain active when background sync is disabled. An actual device attempt stopped with `NOT_ACTIVE`, journal phase `starting`, no installed record, and both services inactive with successful exit status. Do not rerun that installer or clear its retained operation lock. A narrowly validated recovery is being prepared; the signed runtime package and root preparation remain valid.
+
+
 After successful root preparation, `tools/install-core-0.1.1.mjs` is a separate,
 checksum-verified operator tool. SHA-256:
 `1978387af2ac7487fc0302466eea3a94f4e7851e81ca8a4f41ebdfa06dc1be8a`.
