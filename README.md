@@ -47,3 +47,26 @@ systemd/PostgreSQL16 service execution still needs operator confirmation. It doe
 not install the updater, enroll a browser, change login/idle/lid settings or mark
 hardware acceptance complete. The release remains a supervised pre-release;
 published signed package assets are unchanged.
+
+
+### Corrected Core installer and explicit recovery
+
+Use `tools/install-core-0.1.1-r2.mjs` for reviewed initial installation. SHA-256:
+`3302a79aba62b655ed1c8e28f8bb739a0971475c1385f1ec5925cd4585e7dcf5`.
+The old tool above remains preserved for history; do not rerun it.
+When calendar background sync is disabled, r2 starts/enables Core only and verifies
+that calendar remains inactive/disabled. It preserves the existing setting.
+
+The literal `--recover-disabled-calendar` option is restricted to the observed
+0.1.1 `starting` journal, absent installed state, exact unchanged release/account/
+home/units/current, inactive disabled services and one protected prior attempt.
+It retains the original lock, claims a nested lock, preserves the old journal and
+backup, reauthenticates the release, verifies the live household and takes a fresh
+decoded backup before Core startup. Process identity and database-ready health must
+pass before installed-state commit and Core boot enablement. No migration/restore,
+key replacement or browser enrollment occurs. Other states fail for separate review.
+
+Source: `burhanakalin/famynex` commit `d189140b1971d116f42861ec077f482c65ff56fc`.
+All 16 focused initial-install/recovery tests passed with real temporary files and
+service/database doubles. Actual Toshiba recovery is still pending; this is not
+hardware acceptance or updater activation. Signed release assets remain unchanged.
