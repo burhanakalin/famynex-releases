@@ -70,3 +70,27 @@ Source: `burhanakalin/famynex` commit `d189140b1971d116f42861ec077f482c65ff56fc`
 All 16 focused initial-install/recovery tests passed with real temporary files and
 service/database doubles. Actual Toshiba recovery is still pending; this is not
 hardware acceptance or updater activation. Signed release assets remain unchanged.
+
+
+### Dedicated kiosk preparation after Core activation
+
+The Toshiba operator confirmed successful r2 Core installation: installed/activated,
+database ready, fresh backup verified, boot enabled, calendar intentionally disabled,
+existing keys preserved. Kiosk enrollment and hardware acceptance remain pending.
+
+`tools/prepare-kiosk-0.1.1.mjs` prepares only the dedicated account's kiosk files.
+SHA-256: `d22803765c07dea1acd9e8982eea1c502954272d015ab0010a43ad3c209a2209`.
+Source: `burhanakalin/famynex` commit `5a6dd42c3e84526bb960ac9bb12e34497eae939d`.
+The tool requires the fixed installed 0.1.1 identity/current link, pinned signer and
+independent retained-stage/published-release review, private existing browser profile,
+protected executables and actual Core PID/cwd plus database-ready health. It refuses
+existing unit/drop-in/autostart/configuration conflicts, preserves failure locks and
+creates session files as the unprivileged dedicated account. The root-owned user
+service additionally checks ConditionUser=famynex. No credentials reach the session.
+
+This step leaves existing LightDM/burhan login and browser profile bytes unchanged;
+it starts no kiosk, switches no session, does not enroll a display or accept hardware.
+Four focused file/worker preparation cases and 24 existing appliance checks pass on
+Mac Node22.23.2. Actual Toshiba preparation and GUI enrollment remain pending; the
+runtime-build suite was unavailable locally because esbuild is absent. No signed
+application assets were changed and no GitHub Actions run was requested.
