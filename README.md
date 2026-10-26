@@ -116,3 +116,41 @@ enrollment handoff is ready. On any failure, do not reboot or remove operation l
 Four file/parser/concurrency tests pass on MacNode22.23.2 with service/LightDM doubles;
 actual Toshiba configuration and GUI acceptance remain pending. Signed runtime
 assets are unchanged; there is no new GitHub Actions execution.
+
+
+### Explicit physical display enrollment handoff
+
+Actual Toshiba kiosk login configuration is confirmed: backed-up and effectively
+verified famynex/xfce autologin, current session left open, reboot required. Display
+trust and hardware acceptance remain pending.
+
+`tools/enroll-display-0.1.1.mjs` is checksum-verified operator tooling, source
+`burhanakalin/famynex` commit `e69fdd48942f86b67d125fc5341cbb2c355a359c`.
+SHA256: `7ed91f1c213ea23ca618f930ada6c0c29ed5e2cf6379daa0e24279c7ac79f3e1`.
+Run its `--prepare` phase from the verified private root copy to install it privately
+at `/var/lib/famynex-updater/enroll-display-0.1.1.mjs` with a digest receipt. This
+checks the actual installed/current/prepared identity and Core health; it does not
+issue bootstrap or start a browser. Only a successful preparation permits proceeding
+to deliberate operator reboot. It never reboots automatically.
+
+After reboot, switch to a physical VT, log in as burhan and invoke the installed
+root tool with a clean environment. Default invocation rejects PTY/remote callers,
+requires the dedicated local X11 session and correct UID/display, stops only its
+managed kiosk and refuses occupied browser profiles. It calls the existing signed
+launcher in a bounded non-root transient service using the protected Core environment.
+A separate user browser receives a clean graphical-only environment and the exact
+credential-free one-use localhost address. No Core credentials, cookie copying,
+xhost grants, password/PAM changes or automatic trust repair are introduced.
+It activates the existing GUI; closing the enrollment browser resumes normal kiosk.
+
+The human selects the existing-home recovery action explicitly. That native action
+rotates display trust and revokes previous local device/parent-elevation sessions;
+those browsers may need reconnection. Household/provider data and persistent keys
+are preserved. Successful loopback exchange is not a claim that this human step or
+hardware acceptance completed. Failures retain private evidence/operation locks and
+stop only owned transient units; bootstrap is never automatically retried.
+
+Five tests passed on MacNode22.23.2, including real bounded child transport plus
+filesystem, ordering, unsafe-console/session/profile and failed-handoff fixtures.
+Actual Toshiba prep/GUI/logind/systemd/PostgreSQL bootstrap remain pending.
+Signed release assets are unchanged; no GitHub Actions execution was requested.
